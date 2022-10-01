@@ -1,16 +1,13 @@
 package main
 
 import (
-	"fmt"
-
-	players "github.com/Patrick564/tic-tac-toe-cli/players"
 	ui "github.com/Patrick564/tic-tac-toe-cli/ui"
 )
 
 func main() {
-	players, _ := players.StartNewGame()
+	// firstPlayer, _ := players.StartNewGame(os.Stdout, os.Stdin, players.X)
 
-	fmt.Println(players)
+	// fmt.Println(firstPlayer)
 
 	ui.DrawBoard()
 }

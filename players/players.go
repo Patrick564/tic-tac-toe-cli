@@ -2,37 +2,41 @@ package players
 
 import (
 	"fmt"
+	"io"
 )
 
-// [
-// [ 0, 0, 0 ]
-// [ 0, 0, 0 ]
-// [ 0, 0, 0 ]
-// ]
-// 0 -> unset
-// 1 -> player 1
-// 2 -> player 2
-// var boardPositions = make([][]string, 0)
+const (
+	introduceYourName = "Introduce your nickname: "
+	selectYourStamp   = "Select your stamp ('X' or 'O'): "
+)
+
+const (
+	X = "X"
+	O = "O"
+)
 
 type Player struct {
 	Name  string
 	Stamp string
 }
 
-type Board struct{}
-
-func StartNewGame() (string, error) {
-	n := Player{}
-
-	fmt.Print("Introduce your nickname: ")
-	fmt.Scan(&n.Name)
-
-	fmt.Print("Select your stamp ('X' or 'O'): ")
-	fmt.Scan(&n.Stamp)
-
-	return fmt.Sprintf("Player 1 (%s): %s", n.Stamp, n.Name), nil
+type Players struct {
+	players []Player
 }
 
-func PlayerMove() {}
+type Board struct{}
 
-func ClearBoard() {}
+func (p *Players) CreatePlayer(w io.Writer, r io.Reader, stamp string) {
+	player := Player{Stamp: stamp}
+
+	fmt.Fprint(w, introduceYourName)
+	fmt.Fscan(r, &player.Name)
+
+	p.players = append(p.players, player)
+}
+
+func (p *Players) ListAll() []Player {
+	return p.players
+}
+
+func PlayerMove(coordinateA string, coordinateB int) {}
