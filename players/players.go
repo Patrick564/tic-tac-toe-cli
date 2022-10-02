@@ -24,8 +24,6 @@ type Players struct {
 	players []Player
 }
 
-type Board struct{}
-
 func (p *Players) CreatePlayer(w io.Writer, r io.Reader, stamp string) {
 	player := Player{Stamp: stamp}
 
@@ -39,4 +37,4 @@ func (p *Players) ListAll() []Player {
 	return p.players
 }
 
-func PlayerMove(coordinateA string, coordinateB int) {}
+// func PlayerMove(coordinates) {}
