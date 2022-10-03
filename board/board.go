@@ -5,12 +5,6 @@ import (
 	"strings"
 )
 
-var columns = map[string]int{
-	"A": 0,
-	"B": 1,
-	"C": 2,
-}
-
 type Board struct {
 	board [][3]int
 }
@@ -29,8 +23,17 @@ func (b *Board) Show() [][3]int {
 
 func (b *Board) Move(coordinates string, player int) {
 	move := strings.Split(coordinates, "")
-	row := columns[move[0]]
-	column, _ := strconv.Atoi(move[1])
+	row, err := strconv.Atoi(move[0])
+
+	if err != nil {
+		panic(1)
+	}
+
+	column, err := strconv.Atoi(move[1])
+
+	if err != nil {
+		panic(1)
+	}
 
 	b.board[row][column] = player
 }

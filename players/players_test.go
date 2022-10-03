@@ -19,8 +19,8 @@ func TestCreate(t *testing.T) {
 	player1 := players.NewPlayer(&buffer, name1)
 	player2 := players.NewPlayer(&buffer, name2)
 
-	p.Add(player1)
-	p.Add(player2)
+	p.Add(&player1)
+	p.Add(&player2)
 
 	got := p.List()
 	want := []players.Player{
@@ -29,6 +29,6 @@ func TestCreate(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(got, want) {
-		t.Errorf("got %q want %q", got, want)
+		t.Errorf("got %v want %v", got, want)
 	}
 }

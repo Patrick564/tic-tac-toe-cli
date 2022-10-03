@@ -14,10 +14,10 @@ type Player struct {
 }
 
 type Players struct {
-	players []Player
+	players []*Player
 }
 
-func (p *Players) Add(player Player) {
+func (p *Players) Add(player *Player) {
 	switch len(p.players) {
 	case 0:
 		player.Stamp = "X"
@@ -32,7 +32,7 @@ func (p *Players) Add(player Player) {
 	}
 }
 
-func (p *Players) List() []Player {
+func (p *Players) List() []*Player {
 	return p.players
 }
 

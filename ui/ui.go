@@ -1,18 +1,22 @@
 package ui
 
-import "fmt"
+import (
+	"fmt"
 
-func DrawBoard() {
-	// p1 := " "
-	// p2 := "O"
+	board "github.com/Patrick564/tic-tac-toe-cli/board"
+)
 
-	fmt.Print(`
-   0   1   2
- +-----------
-A|   |   |
- |---|---|---
-B|   |   |
- |---|---|---
-C|   |   |
-`)
+func DrawBoard(board board.Board) {
+	for idx, row := range board.Show() {
+		if idx == 0 {
+			fmt.Println(`   0   1   2`)
+			fmt.Println(` +-----------`)
+		}
+
+		fmt.Printf("%d| %d | %d | %d \n", idx, row[0], row[1], row[2])
+
+		if idx < 2 {
+			fmt.Println(` |---|---|---`)
+		}
+	}
 }
