@@ -1,16 +1,20 @@
 package board
 
-import "strings"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
 
 type Board struct {
 	board [][3]int
 }
 
-// var columns = map[string]int{
-// 	"A": 0,
-// 	"B": 1,
-// 	"C": 2,
-// }
+var columns = map[string]int{
+	"A": 0,
+	"B": 1,
+	"C": 2,
+}
 
 // [
 // [ 0, 0, 0 ]
@@ -30,8 +34,14 @@ func (b *Board) GetBoard() [][3]int {
 	return b.board
 }
 
-func PlayerMove(coordinates string) {
-	a := strings.Split(coordinates, "")
+func (b *Board) PlayerMove(coordinates string) {
+	move := strings.Split(coordinates, "")
+	x := columns[move[0]]
+	y, _ := strconv.Atoi(move[1])
+
+	b.board[x][y] = 1
+
+	fmt.Printf("eqweqe %+v", move)
 }
 
 // func InitBoard(coordinateA string, coordinateB int) {}

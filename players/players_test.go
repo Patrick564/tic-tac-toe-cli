@@ -13,21 +13,22 @@ func TestCreatePlayer(t *testing.T) {
 	buffer := bytes.Buffer{}
 	p := players.Players{}
 
-	firstPlayer := strings.NewReader("Yuuta")
-	secondPlayer := strings.NewReader("Rika")
+	name1 := strings.NewReader("Yuuta")
+	name2 := strings.NewReader("Rika")
 
-	p.CreatePlayer(&buffer, firstPlayer, players.X)
-	p.CreatePlayer(&buffer, secondPlayer, players.O)
+	player1 := players.Create(&buffer, name1)
+	player2 := players.Create(&buffer, name2)
 
-	got := p.ListAll()
+	p.Add(player1)
+	p.Add(player2)
+
+	got := p.List()
 	want := []players.Player{
-		{Name: "Yuuta", Stamp: "X"},
-		{Name: "Rika", Stamp: "O"},
+		{Name: "Yuuta", Stamp: "X", Number: 1},
+		{Name: "Rika", Stamp: "O", Number: 2},
 	}
 
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got %q want %q", got, want)
 	}
 }
-
-func TestPlayerMove(t *testing.T) {}

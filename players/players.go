@@ -5,36 +5,42 @@ import (
 	"io"
 )
 
-const (
-	introduceYourName = "Introduce your nickname: "
-	selectYourStamp   = "Select your stamp ('X' or 'O'): "
-)
-
-const (
-	X = "X"
-	O = "O"
-)
+const introduceYourName = "Introduce your name: "
 
 type Player struct {
-	Name  string
-	Stamp string
+	Name   string
+	Stamp  string
+	Number int
 }
 
 type Players struct {
 	players []Player
 }
 
-func (p *Players) CreatePlayer(w io.Writer, r io.Reader, stamp string) {
-	player := Player{Stamp: stamp}
+func Create(w io.Writer, r io.Reader) Player {
+	player := Player{}
 
 	fmt.Fprint(w, introduceYourName)
 	fmt.Fscan(r, &player.Name)
 
-	p.players = append(p.players, player)
+	return player
 }
 
-func (p *Players) ListAll() []Player {
+func (p *Players) Add(player Player) {
+	switch len(p.players) {
+	case 0:
+		player.Stamp = "X"
+		player.Number = 1
+
+		p.players = append(p.players, player)
+	case 1:
+		player.Stamp = "O"
+		player.Number = 2
+
+		p.players = append(p.players, player)
+	}
+}
+
+func (p *Players) List() []Player {
 	return p.players
 }
-
-// func PlayerMove(coordinates) {}

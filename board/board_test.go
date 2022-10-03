@@ -18,3 +18,9 @@ func TestCreateBoard(t *testing.T) {
 		t.Errorf("want %q and got %q", b, want)
 	}
 }
+
+func TestPLayerMove(t *testing.T) {
+	b := board.Board{}
+
+	b.PlayerMove("A1")
+}
