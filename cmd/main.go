@@ -9,24 +9,33 @@ import (
 	ui "github.com/Patrick564/tic-tac-toe-cli/ui"
 )
 
-const maxMoves = 9
+const (
+	maxMoves   = 9
+	maxPlayers = 2
+)
 
 func main() {
 	p := players.Players{}
 	b := board.NewBoard()
 
-	player1 := players.NewPlayer(os.Stdout, os.Stdin)
-	player2 := players.NewPlayer(os.Stdout, os.Stdin)
+	for i := 0; i < maxPlayers; i++ {
+		player := players.NewPlayer(os.Stdout, os.Stdin)
 
-	p.Add(&player1)
-	p.Add(&player2)
+		p.Add(&player)
+	}
 
 	for i := 0; i < maxMoves; i++ {
-		var m string
-		fmt.Print("Introduce your move: ")
-		fmt.Scan(&m)
+		var move string
 
-		b.Move(m, player1.Number)
+		fmt.Print("Coordinates (): ")
+		fmt.Scan(&move)
+
+		if i == 0 || i%2 == 0 {
+			b.Move(move, p.Get(0))
+		} else {
+			b.Move(move, p.Get(1))
+		}
+
 		ui.DrawBoard(b)
 	}
 }

@@ -5,7 +5,7 @@ import (
 	"io"
 )
 
-const introduceYourName = "Introduce your name: "
+const introduceYourName = "Introduce your name (): "
 
 type Player struct {
 	Name   string
@@ -32,10 +32,15 @@ func (p *Players) Add(player *Player) {
 	}
 }
 
+func (p *Players) Get(number int) *Player {
+	return p.List()[number]
+}
+
 func (p *Players) List() []*Player {
 	return p.players
 }
 
+// NewPlayers
 func NewPlayer(w io.Writer, r io.Reader) Player {
 	player := Player{}
 

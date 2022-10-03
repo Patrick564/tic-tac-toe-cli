@@ -13,7 +13,7 @@ func DrawBoard(board board.Board) {
 			fmt.Println(` +-----------`)
 		}
 
-		fmt.Printf("%d| %d | %d | %d \n", idx, row[0], row[1], row[2])
+		fmt.Printf("%d| %s | %s | %s \n", idx, row[0], row[1], row[2])
 
 		if idx < 2 {
 			fmt.Println(` |---|---|---`)
