@@ -7,20 +7,13 @@ import (
 	board "github.com/Patrick564/tic-tac-toe-cli/board"
 )
 
-func TestCreateBoard(t *testing.T) {
-	b := board.Board{}
-	b.CreateBoard()
+func TestNewBoard(t *testing.T) {
+	b := board.NewBoard()
 
-	got := b.GetBoard()
+	got := b.Show()
 	want := make([][3]int, 3)
 
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("want %q and got %q", b, want)
 	}
-}
-
-func TestPLayerMove(t *testing.T) {
-	b := board.Board{}
-
-	b.PlayerMove("A1")
 }

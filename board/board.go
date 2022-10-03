@@ -1,14 +1,9 @@
 package board
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
-
-type Board struct {
-	board [][3]int
-}
 
 var columns = map[string]int{
 	"A": 0,
@@ -16,34 +11,33 @@ var columns = map[string]int{
 	"C": 2,
 }
 
-// [
-// [ 0, 0, 0 ]
-// [ 0, 0, 0 ]
-// [ 0, 0, 0 ]
-// ]
-// 0 -> unset
-// 1 -> player 1
-// 2 -> player 2
-// var boardPositions = make([][]int, 3)
+type Board struct {
+	board [][3]int
+}
 
-func (b *Board) CreateBoard() {
+func (b *Board) Create() {
 	b.board = make([][3]int, 3)
 }
 
-func (b *Board) GetBoard() [][3]int {
+func (b *Board) Reset() {
+	b.board = make([][3]int, 0)
+}
+
+func (b *Board) Show() [][3]int {
 	return b.board
 }
 
-func (b *Board) PlayerMove(coordinates string) {
+func (b *Board) Move(coordinates string, player int) {
 	move := strings.Split(coordinates, "")
-	x := columns[move[0]]
-	y, _ := strconv.Atoi(move[1])
+	row := columns[move[0]]
+	column, _ := strconv.Atoi(move[1])
 
-	b.board[x][y] = 1
-
-	fmt.Printf("eqweqe %+v", move)
+	b.board[row][column] = player
 }
 
-// func InitBoard(coordinateA string, coordinateB int) {}
+func NewBoard() Board {
+	b := Board{}
+	b.Create()
 
-func ClearBoard() {}
+	return b
+}

@@ -17,15 +17,6 @@ type Players struct {
 	players []Player
 }
 
-func Create(w io.Writer, r io.Reader) Player {
-	player := Player{}
-
-	fmt.Fprint(w, introduceYourName)
-	fmt.Fscan(r, &player.Name)
-
-	return player
-}
-
 func (p *Players) Add(player Player) {
 	switch len(p.players) {
 	case 0:
@@ -43,4 +34,13 @@ func (p *Players) Add(player Player) {
 
 func (p *Players) List() []Player {
 	return p.players
+}
+
+func NewPlayer(w io.Writer, r io.Reader) Player {
+	player := Player{}
+
+	fmt.Fprint(w, introduceYourName)
+	fmt.Fscan(r, &player.Name)
+
+	return player
 }

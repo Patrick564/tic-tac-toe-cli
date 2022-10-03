@@ -9,15 +9,15 @@ import (
 	players "github.com/Patrick564/tic-tac-toe-cli/players"
 )
 
-func TestCreatePlayer(t *testing.T) {
+func TestCreate(t *testing.T) {
 	buffer := bytes.Buffer{}
 	p := players.Players{}
 
 	name1 := strings.NewReader("Yuuta")
 	name2 := strings.NewReader("Rika")
 
-	player1 := players.Create(&buffer, name1)
-	player2 := players.Create(&buffer, name2)
+	player1 := players.NewPlayer(&buffer, name1)
+	player2 := players.NewPlayer(&buffer, name2)
 
 	p.Add(player1)
 	p.Add(player2)
