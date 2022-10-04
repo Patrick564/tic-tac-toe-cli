@@ -9,6 +9,7 @@ import (
 func DrawBoard(board board.Board) {
 	for idx, row := range board.Show() {
 		if idx == 0 {
+			fmt.Print("\n")
 			fmt.Println(`   0   1   2`)
 			fmt.Println(` +-----------`)
 		}

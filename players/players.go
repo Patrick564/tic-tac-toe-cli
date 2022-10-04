@@ -5,12 +5,13 @@ import (
 	"io"
 )
 
-const introduceYourName = "Introduce your name (): "
+const introduceYourName = "Name (player %d): "
 
 type Player struct {
-	Name   string
-	Stamp  string
-	Number int
+	Name     string
+	Stamp    string
+	Number   int
+	LastMove string
 }
 
 type Players struct {
@@ -40,11 +41,10 @@ func (p *Players) List() []*Player {
 	return p.players
 }
 
-// NewPlayers
-func NewPlayer(w io.Writer, r io.Reader) Player {
+func NewPlayer(w io.Writer, r io.Reader, l []*Player) Player {
 	player := Player{}
 
-	fmt.Fprint(w, introduceYourName)
+	fmt.Fprintf(w, introduceYourName, len(l)+1)
 	fmt.Fscan(r, &player.Name)
 
 	return player

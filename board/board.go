@@ -11,6 +11,7 @@ type Board struct {
 	board [][3]string
 }
 
+// Create a new board with space values (" ")
 func (b *Board) Create() {
 	b.board = make([][3]string, 3)
 
@@ -29,6 +30,7 @@ func (b *Board) Show() [][3]string {
 	return b.board
 }
 
+// Set a player move using coordinates (y, x) and player instance
 func (b *Board) Move(coordinates string, player *players.Player) {
 	move := strings.Split(coordinates, "")
 	row, err := strconv.Atoi(move[0])
@@ -46,6 +48,7 @@ func (b *Board) Move(coordinates string, player *players.Player) {
 	b.board[row][column] = player.Stamp
 }
 
+// Create a new Board instance
 func NewBoard() Board {
 	b := Board{}
 	b.Create()

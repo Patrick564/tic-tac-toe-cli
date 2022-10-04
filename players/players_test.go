@@ -16,8 +16,8 @@ func TestCreate(t *testing.T) {
 	name1 := strings.NewReader("Yuuta")
 	name2 := strings.NewReader("Rika")
 
-	player1 := players.NewPlayer(&buffer, name1)
-	player2 := players.NewPlayer(&buffer, name2)
+	player1 := players.NewPlayer(&buffer, name1, p.List())
+	player2 := players.NewPlayer(&buffer, name2, p.List())
 
 	p.Add(&player1)
 	p.Add(&player2)
