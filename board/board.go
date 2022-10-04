@@ -1,6 +1,7 @@
 package board
 
 import (
+	"errors"
 	"strconv"
 	"strings"
 
@@ -31,21 +32,27 @@ func (b *Board) Show() [][3]string {
 }
 
 // Set a player move using coordinates (y, x) and player instance
-func (b *Board) Move(coordinates string, player *players.Player) {
+func (b *Board) Move(coordinates string, player *players.Player) error {
 	move := strings.Split(coordinates, "")
 	row, err := strconv.Atoi(move[0])
 
 	if err != nil {
-		panic(1)
+		return err
 	}
 
 	column, err := strconv.Atoi(move[1])
 
 	if err != nil {
-		panic(1)
+		return err
+	}
+
+	if row > 2 || column > 2 {
+		return errors.New("max number is 2")
 	}
 
 	b.board[row][column] = player.Stamp
+
+	return nil
 }
 
 // Create a new Board instance

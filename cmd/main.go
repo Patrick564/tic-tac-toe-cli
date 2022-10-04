@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"time"
 
 	board "github.com/Patrick564/tic-tac-toe-cli/board"
 	players "github.com/Patrick564/tic-tac-toe-cli/players"
@@ -41,7 +42,15 @@ func main() {
 		fmt.Printf("\n%s move (left|right): ", playerTurn.Name)
 		fmt.Scan(&playerTurn.LastMove)
 
-		b.Move(playerTurn.LastMove, playerTurn)
+		err := b.Move(playerTurn.LastMove, playerTurn)
+
+		if err != nil {
+			fmt.Print("Only numbers from 0 to 2 permitted.")
+			time.Sleep(time.Second)
+			i--
+
+			continue
+		}
 	}
 }
 
