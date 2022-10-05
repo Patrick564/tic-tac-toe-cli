@@ -31,10 +31,10 @@ func main() {
 	for i := 0; i < maxMoves; i++ {
 		clear()
 
-		playerTurn := p.Get(0)
+		playerTurn := p.GetByNumber(0)
 
 		if i%2 != 0 {
-			playerTurn = p.Get(1)
+			playerTurn = p.GetByNumber(1)
 		}
 
 		ui.DrawBoard(b)
@@ -50,6 +50,13 @@ func main() {
 			i--
 
 			continue
+		}
+
+		win := b.Win()
+		if win {
+			ui.DrawWinner(*playerTurn)
+
+			break
 		}
 	}
 }

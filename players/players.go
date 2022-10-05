@@ -33,7 +33,17 @@ func (p *Players) Add(player *Player) {
 	}
 }
 
-func (p *Players) Get(number int) *Player {
+func (p *Players) GetByNumber(number int) *Player {
+	return p.List()[number]
+}
+
+func (p *Players) GetByStamp(stamp string) *Player {
+	number := 1
+
+	if stamp == "O" {
+		number = 2
+	}
+
 	return p.List()[number]
 }
 

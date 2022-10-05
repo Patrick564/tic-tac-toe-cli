@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	board "github.com/Patrick564/tic-tac-toe-cli/board"
+	players "github.com/Patrick564/tic-tac-toe-cli/players"
 )
 
 func DrawBoard(board board.Board) {
@@ -20,4 +21,8 @@ func DrawBoard(board board.Board) {
 			fmt.Println(` |---|---|---`)
 		}
 	}
+}
+
+func DrawWinner(p players.Player) {
+	fmt.Printf("\nPlayer %s is the winner!", p.Name)
 }
